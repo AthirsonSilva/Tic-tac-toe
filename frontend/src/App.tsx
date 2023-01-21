@@ -1,10 +1,12 @@
 import React from 'react'
-import { io } from 'socket.io-client'
 import styled from 'styled-components'
 import './App.css'
+import { JoinRoom } from './components/joinRoom'
+import GameContext, { IGameContextProps } from './gameContext'
+import socketService from './services/socketService'
 
 const AppContainer = styled.div`
-	width: 100%;
+	width: 98%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -12,23 +14,47 @@ const AppContainer = styled.div`
 	padding: 1em;
 `
 
-function App() {
-	const connect = () => {
-		const socket = io('http://localhost:6969')
+const WelcomeText = styled.h1`
+	margin: 0;
+	color: #61dafb;
+`
 
-		socket.on('connect', () => {
-			socket.emit('custom_event', 'Hello from React')
-		})
+const MainContainer = styled.div`
+	width: 100%;
+	height: 100%;
+	display: flex;
+	margin-top: 25vh;
+	justify-content: center;
+	align-items: center;
+`
+
+function App() {
+	const [isInRoom, setInRoom] = React.useState(false)
+
+	const connectSocket = async () => {
+		socketService
+			.connect('http://localhost:6969')
+			.catch((error) => console.log('Connection error: ', error))
 	}
 
 	React.useEffect(() => {
-		connect()
-	}, [])
+		connectSocket()
+	})
+
+	const gameContextValue: IGameContextProps = {
+		isInRoom,
+		setInRoom
+	}
 
 	return (
-		<AppContainer>
-			<h1>React + TypeScript + Styled Components</h1>
-		</AppContainer>
+		<GameContext.Provider value={gameContextValue}>
+			<AppContainer>
+				<WelcomeText>Welcome to Tic-Tac-Toe game!</WelcomeText>
+				<MainContainer>
+					<JoinRoom />
+				</MainContainer>
+			</AppContainer>
+		</GameContext.Provider>
 	)
 }
 
