@@ -8,20 +8,20 @@ import * as http from 'http'
 import 'reflect-metadata'
 import app from './app'
 import socketServer from './socket'
-var debug = require('debug')('socketio-server:server')
+let debug = require('debug')('socketio-server:server')
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '6969')
+let port = normalizePort(process.env.PORT || '6969')
 app.set('port', port)
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app)
+let server = http.createServer(app)
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -38,7 +38,7 @@ const io = socketServer(server as any)
  */
 
 function normalizePort(val: string) {
-	var port = parseInt(val, 10)
+	let port = parseInt(val, 10)
 
 	if (isNaN(port)) {
 		// named pipe
@@ -62,7 +62,7 @@ function onError(error: any) {
 		throw error
 	}
 
-	var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port
+	let bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port
 
 	// handle specific listen errors with friendly messages
 	switch (error.code) {
@@ -82,8 +82,8 @@ function onError(error: any) {
  */
 
 function onListening() {
-	var addr = server.address()
-	var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr?.port
+	let addr = server.address()
+	let bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr?.port
 	debug('Listening on ' + bind)
 
 	console.log('Server Running on Port: ', port)

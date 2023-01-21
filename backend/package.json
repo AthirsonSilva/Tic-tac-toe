@@ -14,16 +14,22 @@
 		"express-flash": "^0.0.2",
 		"express-session": "^1.17.3",
 		"express-validator": "^6.14.3",
+		"glob": "^8.1.0",
 		"http-errors": "~1.6.3",
 		"jade": "~1.11.0",
 		"morgan": "~1.9.1",
 		"reflect-metadata": "^0.1.13",
-		"socket-controllers": "^0.1.0",
+		"socket-controllers": "^0.0.5",
 		"socket.io": "^4.5.4",
 		"typedi": "^0.10.0",
 		"typescript": "^4.9.4"
 	},
 	"devDependencies": {
+		"@types/cookie-parser": "^1.4.3",
+		"@types/express-flash": "^0.0.2",
+		"@types/express-session": "^1.17.5",
+		"@types/http-errors": "^2.0.1",
+		"@types/morgan": "^1.9.4",
 		"nodemon": "^2.0.20",
 		"ts-node": "^10.9.1"
 	}

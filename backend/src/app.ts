@@ -1,14 +1,10 @@
-const createError = require('http-errors')
-const express = require('express')
-const path = require('path')
-const cookieParser = require('cookie-parser')
-const logger = require('morgan')
-const expressValidator = require('express-validator')
-const flash = require('express-flash')
-const session = require('express-session')
-const bodyParser = require('body-parser')
-
-import { NextFunction, Request, Response } from 'express'
+import cookieParser from 'cookie-parser'
+import express, { NextFunction, Request, Response } from 'express'
+import flash from 'express-flash'
+import session from 'express-session'
+import createError from 'http-errors'
+import logger from 'morgan'
+import path from 'path'
 import 'reflect-metadata'
 
 const app = express()
